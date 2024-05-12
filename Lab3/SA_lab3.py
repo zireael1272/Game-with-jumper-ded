@@ -46,9 +46,18 @@ def start():
     running = True
     play = True
     while play:
+        screen.fill((0, 0, 0))
+        font = pygame.font.Font(None, 50)
+        text = font.render("Press Enter for Start Game", True, (255, 255, 255))
+        text_rect = text.get_rect()
+        text_rect.x = SCREEN_WIDTH / 4
+        text_rect.y = SCREEN_HEIGHT / 2
+        screen.blit(text, text_rect)
+        pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 play = False
+                running = False
                 switch_scene(None)
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
@@ -61,33 +70,40 @@ def start():
                         damage.start = False
                     switch_scene(main)
                     play = False
-    font = pygame.font.Font(None, 50)
-    text = font.render("Press Enter for Start Game", True, (255, 255, 255))
-    text_rect = text.get_rect()
-    text_rect.x = SCREEN_WIDTH / 4
-    text_rect.y = SCREEN_HEIGHT / 2
-    screen.blit(text, text_rect)
-    pygame.display.update()
 
 
-def end():
+def end(text_output):
     global running
-    screen.fill((0, 0, 0))
-    font = pygame.font.Font(None, 50)
-    text = font.render("End Game", True, (255, 255, 255))
-    text_rect = text.get_rect()
-    text_rect.x = SCREEN_WIDTH / 2.5
-    text_rect.y = SCREEN_HEIGHT / 2
-    screen.blit(text, text_rect)
-    pygame.display.update()
     running = False
+    play = True
+    while play:
+        screen.fill((0, 0, 0))
+        font = pygame.font.Font(None, 50)
+        text = font.render("End Game", True, (255, 255, 255))
+        text_rect = text.get_rect()
+        text_rect.x = SCREEN_WIDTH / 2.5
+        text_rect.y = 150
+        screen.blit(text, text_rect)
+        text_output_rect = text.get_rect()
+        text_output_rect.x = SCREEN_WIDTH / 2.5
+        text_output_rect.y = 210
+        screen.blit(text_output, text_output_rect)
+        pygame.display.update()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                play = False
+                switch_scene(None)
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    running = True
+                    switch_scene(main)
+                    play = False
 
 
 def main():
     global damage_counter, running, enter_pressed
     while running:
         screen.fill((0, 0, 0))
-        collision_this_frame = False
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -115,6 +131,9 @@ def main():
                     background.background_speed5 += 0.09
                     break
 
+        font = pygame.font.Font(None, 50)
+        text_lost = font.render(f"  You loser", True, (255, 255, 255))
+
         for damage in damages:
             damage.update()
             damage_rect = damage.get_rect()
@@ -132,7 +151,7 @@ def main():
                             booster.start = True
                         for damage in damages:
                             damage.start = True
-                        end()
+                        end(text_lost)
                     for booster in boosters:
                         booster.speed -= 0.5
                     for damag in damages:
@@ -150,6 +169,9 @@ def main():
         text_rect.y = 18
         screen.blit(text, text_rect)
 
+        font = pygame.font.Font(None, 50)
+        text_win = font.render(f" You win\n Yours count point - {grandpa.collected_boosts}", True, (255, 255, 255))
+
         if grandpa.game_end:
             grandpa.game_end = False
             grandpa.start = True
@@ -159,10 +181,11 @@ def main():
                 booster.start = True
             for damage in damages:
                 damage.start = True
-            end()
+            end(text_win)
 
         pygame.display.update()
         clock.tick(60)
+
 
 switch_scene(start)
 while current_scene is not None:

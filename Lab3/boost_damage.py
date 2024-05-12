@@ -7,7 +7,7 @@ class Booster:
         self.start = True
         self.collected = False
         self.collected_booster = None
-        self.speed = 1.3
+        self.speed = 1.5
         self.booster_1 = pygame.image.load(
         r"C:\Users\User\Desktop\Систем анализ\Lab3\Resource\booster\Ghostpixxells_pixelfood\tortik.png").convert_alpha()
 
@@ -35,7 +35,7 @@ class Damage:
         self.start = True
         self.collected = False
         self.collected_damage = None
-        self.speed = 1.3
+        self.speed = 1.5
         self.damage_1 = pygame.image.load(
             r"C:\Users\User\Desktop\Систем анализ\Lab3\Resource\damage\damage_1.png").convert_alpha()
 

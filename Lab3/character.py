@@ -22,7 +22,7 @@ class Grandpabegit(pygame.sprite.Sprite):
         self.y_gravity = 1
         self.animate_index = 0
         self.animate_speed = 0.19
-        self.acceleration = 0.09
+        self.acceleration = 0.12
         self.height_jump = 25
         self.y_velocity = 0
         self.button_space = False

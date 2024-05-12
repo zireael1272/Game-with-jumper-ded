@@ -110,8 +110,8 @@ def main():
                 sys.exit()
 
         background.update(screen)
-        HP.output(damage_counter)
         grandpa.update()
+        HP.output(damage_counter)
 
         for booster in boosters:
             booster.update()
@@ -149,13 +149,13 @@ def main():
                         HP.start = True
                         for booster in boosters:
                             booster.start = True
-                        for damage in damages:
-                            damage.start = True
+                        for damage_1 in damages:
+                            damage_1.start = True
                         end(text_lost)
                     for booster in boosters:
                         booster.speed -= 0.5
-                    for damag in damages:
-                        damag.speed -= 0.6
+                    for dam in damages:
+                        dam.speed -= 0.5
                     background.background_speed2 -= 0.09
                     background.background_speed3 -= 0.09
                     background.background_speed4 -= 0.09
@@ -170,7 +170,7 @@ def main():
         screen.blit(text, text_rect)
 
         font = pygame.font.Font(None, 50)
-        text_win = font.render(f" You win\n Yours count point - {grandpa.collected_boosts}", True, (255, 255, 255))
+        text_win = font.render(f"  You win\n Yours count point - {grandpa.collected_boosts}", True, (255, 255, 255))
 
         if grandpa.game_end:
             grandpa.game_end = False
@@ -183,7 +183,7 @@ def main():
                 damage.start = True
             end(text_win)
 
-        pygame.display.update()
+        pygame.display.flip()
         clock.tick(60)
 
 

@@ -79,7 +79,7 @@ def end(text_win, text_point, result):
     global running
     running = False
     play = True
-    with open("C:/Users/User/Desktop/Game-with-jumper-ded/Lab3/Best_result.txt", 'r') as file:
+    with open("Best_result.txt", 'r') as file:
         best_result = int(file.read().strip())
     file.close()
     background_music.stop()
@@ -98,7 +98,7 @@ def end(text_win, text_point, result):
             text = font.render(f"Best result: {result}", True, (255, 255, 255))
             text_best_rect = text.get_rect(topleft=(340, 330))
             screen.blit(text, text_best_rect)
-            best = open('C:/Users/User/Desktop/Game-with-jumper-ded/Lab3/Best_result.txt', 'wt')
+            best = open('Best_result.txt', 'wt')
             print(result, file=best)
             best.close()
         else:

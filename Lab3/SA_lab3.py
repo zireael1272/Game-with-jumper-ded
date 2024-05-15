@@ -13,7 +13,7 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Стрибки")
 pygame.mixer.init()
 background_music = pygame.mixer.Sound(r"Resource/music/Main Sound.wav")
-background_music.play(loops=-1)
+end_sound = pygame.mixer.Sound(r"Resource/music/Game Over.mp3")
 background = Background(SCREEN_WIDTH, SCREEN_HEIGHT)
 grandpa = Grandpabegit(screen)
 HP = Heart(screen)
@@ -45,6 +45,7 @@ def switch_scene(scene):
 
 
 def start():
+    background_music.play(loops=-1)
     global running
     running = True
     play = True
@@ -84,6 +85,8 @@ def end(text_win, text_point, result):
     file.close()
     background_music.stop()
     while play:
+        if result == 0:
+            end_sound.play()
         screen.fill((0, 0, 0))
         font = pygame.font.Font(None, 50)
         text = font.render("End Game", True, (255, 255, 255))
@@ -98,7 +101,8 @@ def end(text_win, text_point, result):
             text = font.render(f"Best result: {result}", True, (255, 255, 255))
             text_best_rect = text.get_rect(topleft=(340, 330))
             screen.blit(text, text_best_rect)
-            best = open('Best_result.txt', 'wt')
+            best = open(''
+                        'Best_result.txt', 'wt')
             print(result, file=best)
             best.close()
         else:
@@ -113,8 +117,8 @@ def end(text_win, text_point, result):
                 switch_scene(None)
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
-                    running = True
-                    switch_scene(main)
+                    end_sound.stop()
+                    switch_scene(start)
                     play = False
 
 

@@ -7,16 +7,16 @@ class Background:
         self.screen_height = screen_height
         self.start = True
 
-        self.background1 = pygame.image.load(r"C:\Users\User\Desktop\Систем анализ\Lab3\Resource\background\5.png").convert()
-        self.background2 = pygame.image.load(r"C:\Users\User\Desktop\Систем анализ\Lab3\Resource\background\4.png").convert_alpha()
-        self.background3 = pygame.image.load(r"C:\Users\User\Desktop\Систем анализ\Lab3\Resource\background\3.png").convert_alpha()
-        self.background4 = pygame.image.load(r"C:\Users\User\Desktop\Систем анализ\Lab3\Resource\background\2.png").convert_alpha()
-        self.background5 = pygame.image.load(r"C:\Users\User\Desktop\Систем анализ\Lab3\Resource\background\1.png").convert_alpha()
+        self.background1 = pygame.image.load(r"C:\Users\User\Desktop\Game-with-jumper-ded\Lab3\Resource\background\5.png").convert()
+        self.background2 = pygame.image.load(r"C:\Users\User\Desktop\Game-with-jumper-ded\Lab3\Resource\background\4.png").convert_alpha()
+        self.background3 = pygame.image.load(r"C:\Users\User\Desktop\Game-with-jumper-ded\Lab3\Resource\background\3.png").convert_alpha()
+        self.background4 = pygame.image.load(r"C:\Users\User\Desktop\Game-with-jumper-ded\Lab3\Resource\background\2.png").convert_alpha()
+        self.background5 = pygame.image.load(r"C:\Users\User\Desktop\Game-with-jumper-ded\Lab3\Resource\background\1.png").convert_alpha()
 
-        self.background2_change = pygame.image.load(r"C:\Users\User\Desktop\Систем анализ\Lab3\Resource\background\4.png").convert_alpha()
-        self.background3_change = pygame.image.load(r"C:\Users\User\Desktop\Систем анализ\Lab3\Resource\background\3.png").convert_alpha()
-        self.background4_change = pygame.image.load(r"C:\Users\User\Desktop\Систем анализ\Lab3\Resource\background\2.png").convert_alpha()
-        self.background5_change = pygame.image.load(r"C:\Users\User\Desktop\Систем анализ\Lab3\Resource\background\1.png").convert_alpha()
+        self.background2_change = pygame.image.load(r"C:\Users\User\Desktop\Game-with-jumper-ded\Lab3\Resource\background\4.png").convert_alpha()
+        self.background3_change = pygame.image.load(r"C:\Users\User\Desktop\Game-with-jumper-ded\Lab3\Resource\background\3.png").convert_alpha()
+        self.background4_change = pygame.image.load(r"C:\Users\User\Desktop\Game-with-jumper-ded\Lab3\Resource\background\2.png").convert_alpha()
+        self.background5_change = pygame.image.load(r"C:\Users\User\Desktop\Game-with-jumper-ded\Lab3\Resource\background\1.png").convert_alpha()
 
         self.background2_x = 0
         self.background3_x = 0

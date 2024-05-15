@@ -7,16 +7,16 @@ class Grandpabegit(pygame.sprite.Sprite):
         self.collected_boosts = 0
         self.ded_begit = [
             pygame.image.load(
-                r"C:\Users\User\Desktop\Систем анализ\Lab3\Resource\old_man\ded_1.png").convert_alpha(),
+                r"C:\Users\User\Desktop\Game-with-jumper-ded\Lab3\Resource\old_man\ded_1.png").convert_alpha(),
             pygame.image.load(
-                r"C:\Users\User\Desktop\Систем анализ\Lab3\Resource\old_man\ded_2.png").convert_alpha(),
+                r"C:\Users\User\Desktop\Game-with-jumper-ded\Lab3\Resource\old_man\ded_2.png").convert_alpha(),
             pygame.image.load(
-                r"C:\Users\User\Desktop\Систем анализ\Lab3\Resource\old_man\ded_3.png").convert_alpha(),
+                r"C:\Users\User\Desktop\Game-with-jumper-ded\Lab3\Resource\old_man\ded_3.png").convert_alpha(),
             pygame.image.load(
-                r"C:\Users\User\Desktop\Систем анализ\Lab3\Resource\old_man\ded_4.png").convert_alpha()
+                r"C:\Users\User\Desktop\Game-with-jumper-ded\Lab3\Resource\old_man\ded_4.png").convert_alpha()
         ]
         self.ded_static = pygame.image.load(
-            r"C:\Users\User\Desktop\Систем анализ\Lab3\Resource\old_man\ded_1.png").convert_alpha()
+            r"C:\Users\User\Desktop\Game-with-jumper-ded\Lab3\Resource\old_man\ded_1.png").convert_alpha()
         self.ded_x = 80
         self.ded_y = 460
         self.y_gravity = 1

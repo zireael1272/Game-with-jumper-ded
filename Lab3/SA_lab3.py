@@ -12,7 +12,7 @@ SCREEN_HEIGHT = 500
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Стрибки")
 pygame.mixer.init()
-background_music = pygame.mixer.Sound(r"C:/Users/User/Desktop/Систем анализ/Lab3/Resource/music/Main Sound.wav")
+background_music = pygame.mixer.Sound(r"C:/Users/User/Desktop/Game-with-jumper-ded/Lab3/Resource/music/Main Sound.wav")
 background_music.play(loops=-1)
 background = Background(SCREEN_WIDTH, SCREEN_HEIGHT)
 grandpa = Grandpabegit(screen)
@@ -96,7 +96,7 @@ def end(text_win, text_point, result):
         if best_result < result:
             font = pygame.font.Font(None, 50)
             text = font.render(f"Best result: {result}", True, (255, 255, 255))
-            text_best_rect = text.get_rect(topleft=(335, 330))
+            text_best_rect = text.get_rect(topleft=(340, 330))
             screen.blit(text, text_best_rect)
             best = open('C:/Users/User/Desktop/Game-with-jumper-ded/Lab3/Best_result.txt', 'wt')
             print(result, file=best)
@@ -104,7 +104,7 @@ def end(text_win, text_point, result):
         else:
             font = pygame.font.Font(None, 50)
             text = font.render(f"Best result: {best_result}", True, (255, 255, 255))
-            text_best_rect = text.get_rect(topleft=(335, 330))
+            text_best_rect = text.get_rect(topleft=(340, 330))
             screen.blit(text, text_best_rect)
         pygame.display.update()
         for event in pygame.event.get():
@@ -149,7 +149,7 @@ def main():
                     break
 
         font = pygame.font.Font(None, 50)
-        text_lost = font.render(f"  You loser", True, (255, 255, 255))
+        text_lost = font.render(f" You loser", True, (255, 255, 255))
 
         for damage in damages:
             damage.update()
@@ -168,7 +168,7 @@ def main():
                             booster.start = True
                         for damage_1 in damages:
                             damage_1.start = True
-                        text_point = font.render(f" Try Again", True,(255, 255, 255))
+                        text_point = font.render(f"           Try Again", True,(255, 255, 255))
                         end(text_lost, text_point, 0)
                     for booster in boosters:
                         booster.speed -= 0.5

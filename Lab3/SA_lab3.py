@@ -11,6 +11,9 @@ SCREEN_WIDTH = 900
 SCREEN_HEIGHT = 500
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Стрибки")
+pygame.mixer.init()
+background_music = pygame.mixer.Sound(r"C:/Users/User/Desktop/Систем анализ/Lab3/Resource/music/Main Sound.wav")
+background_music.play(loops=-1)
 background = Background(SCREEN_WIDTH, SCREEN_HEIGHT)
 grandpa = Grandpabegit(screen)
 HP = Heart(screen)
@@ -79,39 +82,30 @@ def end(text_win, text_point, result):
     with open("C:/Users/User/Desktop/Game-with-jumper-ded/Lab3/Best_result.txt", 'r') as file:
         best_result = int(file.read().strip())
     file.close()
+    background_music.stop()
     while play:
         screen.fill((0, 0, 0))
         font = pygame.font.Font(None, 50)
         text = font.render("End Game", True, (255, 255, 255))
-        text_rect = text.get_rect()
-        text_rect.x = SCREEN_WIDTH / 2.5
-        text_rect.y = 150
+        text_rect = text.get_rect(topleft=(SCREEN_WIDTH / 2.5, 150))
         screen.blit(text, text_rect)
-        text_win_rect = text.get_rect()
-        text_win_rect.x = SCREEN_WIDTH / 2.5
-        text_win_rect.y = 210
+        text_win_rect = text.get_rect(topleft=(SCREEN_WIDTH / 2.5, 210))
         screen.blit(text_win, text_win_rect)
-        text_point_rect = text.get_rect()
-        text_point_rect.x = 275
-        text_point_rect.y = 270
+        text_point_rect = text.get_rect(topleft=(275, 270))
         screen.blit(text_point, text_point_rect)
         if best_result < result:
             font = pygame.font.Font(None, 50)
             text = font.render(f"Best result: {result}", True, (255, 255, 255))
-            text_point_rect = text.get_rect()
-            text_point_rect.x = 335
-            text_point_rect.y = 330
-            screen.blit(text, text_point_rect)
+            text_best_rect = text.get_rect(topleft=(335, 330))
+            screen.blit(text, text_best_rect)
             best = open('C:/Users/User/Desktop/Game-with-jumper-ded/Lab3/Best_result.txt', 'wt')
             print(result, file=best)
             best.close()
         else:
             font = pygame.font.Font(None, 50)
             text = font.render(f"Best result: {best_result}", True, (255, 255, 255))
-            text_point_rect = text.get_rect()
-            text_point_rect.x = 335
-            text_point_rect.y = 330
-            screen.blit(text, text_point_rect)
+            text_best_rect = text.get_rect(topleft=(335, 330))
+            screen.blit(text, text_best_rect)
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -132,7 +126,6 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-
         background.update(screen)
         grandpa.update()
         HP.output(damage_counter)
@@ -175,7 +168,8 @@ def main():
                             booster.start = True
                         for damage_1 in damages:
                             damage_1.start = True
-                        end(text_lost, "", 0)
+                        text_point = font.render(f" Try Again", True,(255, 255, 255))
+                        end(text_lost, text_point, 0)
                     for booster in boosters:
                         booster.speed -= 0.5
                     for dam in damages:
@@ -185,7 +179,6 @@ def main():
                     background.background_speed4 -= 0.09
                     background.background_speed5 -= 0.09
                     break
-
         font = pygame.font.Font(None, 30)
         text = font.render(f"Cakes - {grandpa.collected_boosts}", True, (255, 255, 255))
         text_rect = text.get_rect()

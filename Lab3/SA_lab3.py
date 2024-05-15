@@ -72,10 +72,13 @@ def start():
                     play = False
 
 
-def end(text_output):
+def end(text_win, text_point, result):
     global running
     running = False
     play = True
+    with open("C:/Users/User/Desktop/Game-with-jumper-ded/Lab3/Best_result.txt", 'r') as file:
+        best_result = int(file.read().strip())
+    file.close()
     while play:
         screen.fill((0, 0, 0))
         font = pygame.font.Font(None, 50)
@@ -84,10 +87,31 @@ def end(text_output):
         text_rect.x = SCREEN_WIDTH / 2.5
         text_rect.y = 150
         screen.blit(text, text_rect)
-        text_output_rect = text.get_rect()
-        text_output_rect.x = SCREEN_WIDTH / 2.5
-        text_output_rect.y = 210
-        screen.blit(text_output, text_output_rect)
+        text_win_rect = text.get_rect()
+        text_win_rect.x = SCREEN_WIDTH / 2.5
+        text_win_rect.y = 210
+        screen.blit(text_win, text_win_rect)
+        text_point_rect = text.get_rect()
+        text_point_rect.x = 275
+        text_point_rect.y = 270
+        screen.blit(text_point, text_point_rect)
+        if best_result < result:
+            font = pygame.font.Font(None, 50)
+            text = font.render(f"Best result: {result}", True, (255, 255, 255))
+            text_point_rect = text.get_rect()
+            text_point_rect.x = 335
+            text_point_rect.y = 330
+            screen.blit(text, text_point_rect)
+            best = open('C:/Users/User/Desktop/Game-with-jumper-ded/Lab3/Best_result.txt', 'wt')
+            print(result, file=best)
+            best.close()
+        else:
+            font = pygame.font.Font(None, 50)
+            text = font.render(f"Best result: {best_result}", True, (255, 255, 255))
+            text_point_rect = text.get_rect()
+            text_point_rect.x = 335
+            text_point_rect.y = 330
+            screen.blit(text, text_point_rect)
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -151,7 +175,7 @@ def main():
                             booster.start = True
                         for damage_1 in damages:
                             damage_1.start = True
-                        end(text_lost)
+                        end(text_lost, "", 0)
                     for booster in boosters:
                         booster.speed -= 0.5
                     for dam in damages:
@@ -170,7 +194,8 @@ def main():
         screen.blit(text, text_rect)
 
         font = pygame.font.Font(None, 50)
-        text_win = font.render(f"  You win\n Yours count point - {grandpa.collected_boosts}", True, (255, 255, 255))
+        text_win = font.render(f"  You win", True, (255, 255, 255))
+        text_point = font.render(f" Yours count point - {grandpa.collected_boosts}", True, (255, 255, 255))
 
         if grandpa.game_end:
             grandpa.game_end = False
@@ -181,7 +206,7 @@ def main():
                 booster.start = True
             for damage in damages:
                 damage.start = True
-            end(text_win)
+            end(text_win, text_point, grandpa.collected_boosts)
 
         pygame.display.flip()
         clock.tick(60)

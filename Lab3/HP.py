@@ -3,19 +3,19 @@ class Heart:
     def __init__(self, screen):
         self.screen = screen
         self.start = True
-        self.HP_animate = [pygame.image.load(r"C:\Users\User\Desktop\Game-with-jumper-ded\Lab3\Resource\HP\heart_1.png").convert_alpha(),
+        self.HP_animate = [pygame.image.load(r"Resource\HP\heart_1.png").convert_alpha(),
                        pygame.image.load(
-                           r"C:\Users\User\Desktop\Game-with-jumper-ded\Lab3\Resource\HP\heart_2.png").convert_alpha(),
+                           r"Resource\HP\heart_2.png").convert_alpha(),
                        pygame.image.load(
-                           r"C:\Users\User\Desktop\Game-with-jumper-ded\Lab3\Resource\HP\heart_3.png").convert_alpha(),
+                           r"Resource\HP\heart_3.png").convert_alpha(),
                        pygame.image.load(
-                           r"C:\Users\User\Desktop\Game-with-jumper-ded\Lab3\Resource\HP\heart_4.png").convert_alpha(),
+                           r"Resource\HP\heart_4.png").convert_alpha(),
                        pygame.image.load(
-                           r"C:\Users\User\Desktop\Game-with-jumper-ded\Lab3\Resource\HP\heart_5.png").convert_alpha(),
+                           r"Resource\HP\heart_5.png").convert_alpha(),
                        pygame.image.load(
-                           r"C:\Users\User\Desktop\Game-with-jumper-ded\Lab3\Resource\HP\heart_6.png").convert_alpha()
+                           r"Resource\HP\heart_6.png").convert_alpha()
                        ]
-        self.HP_empty = pygame.image.load(r"C:\Users\User\Desktop\Game-with-jumper-ded\Lab3\Resource\HP\heart_empty.png").convert_alpha()
+        self.HP_empty = pygame.image.load(r"Resource\HP\heart_empty.png").convert_alpha()
         self.animate_index = 0
         self.animate_speed = 0.08
 

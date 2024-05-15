@@ -12,7 +12,7 @@ SCREEN_HEIGHT = 500
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Стрибки")
 pygame.mixer.init()
-background_music = pygame.mixer.Sound(r"C:/Users/User/Desktop/Game-with-jumper-ded/Lab3/Resource/music/Main Sound.wav")
+background_music = pygame.mixer.Sound(r"Resource/music/Main Sound.wav")
 background_music.play(loops=-1)
 background = Background(SCREEN_WIDTH, SCREEN_HEIGHT)
 grandpa = Grandpabegit(screen)

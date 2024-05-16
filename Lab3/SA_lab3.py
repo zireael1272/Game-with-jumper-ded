@@ -51,7 +51,6 @@ def switch_scene(scene):
 
 
 def start():
-    create_boost_damage()
     background_music.play(loops=-1)
     global running
     running = True
@@ -72,14 +71,18 @@ def start():
                 switch_scene(None)
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
+                    create_boost_damage()
                     background.start = False
                     grandpa.start = False
                     grandpa.ded_x = 80
+                    grandpa.acceleration = 0.19
                     HP.start = False
                     for booster in boosters:
                         booster.start = False
+                        booster.speed = 1.5
                     for damage in damages:
                         damage.start = False
+                        damage.speed = 1.5
                     switch_scene(main)
                     play = False
 

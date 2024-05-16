@@ -6,7 +6,6 @@ class Booster:
         self.y = y
         self.start = True
         self.collected = False
-        self.collected_booster = None
         self.speed = 1.5
         self.booster_1 = pygame.image.load(
         r"Resource\booster\Ghostpixxells_pixelfood\tortik.png").convert_alpha()
@@ -15,7 +14,6 @@ class Booster:
         if not self.start and not self.collected:
             self.x -= self.speed
             self.screen.blit(self.booster_1, (self.x, self.y))
-
 
     def get_rect(self):
         return self.booster_1.get_rect(topleft=(self.x, self.y))

@@ -14,7 +14,7 @@ pygame.display.set_caption("Стрибки")
 pygame.mixer.init()
 background_music = pygame.mixer.Sound(r"Resource/music/Main Sound.wav")
 end_sound = pygame.mixer.Sound(r"Resource/music/Game Over.mp3")
-win_sound = pygame.mixer.Sound(r"Resource/music/win_neploho.mp3")
+win_sound = pygame.mixer.Sound(r"Resource/music/win.mp3")
 background = Background(SCREEN_WIDTH, SCREEN_HEIGHT)
 grandpa = Grandpabegit(screen)
 HP = Heart(screen)
@@ -52,7 +52,7 @@ def switch_scene(scene):
 
 def start():
     background_music.play(loops=-1)
-    global running
+    global running, x_offset
     running = True
     play = True
     while play:
@@ -76,13 +76,12 @@ def start():
                     grandpa.start = False
                     grandpa.ded_x = 80
                     grandpa.acceleration = 0.19
+                    x_offset = 200
                     HP.start = False
                     for booster in boosters:
                         booster.start = False
-                        booster.speed = 1.5
                     for damage in damages:
                         damage.start = False
-                        damage.speed = 1.5
                     switch_scene(main)
                     play = False
 

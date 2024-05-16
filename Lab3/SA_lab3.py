@@ -21,24 +21,29 @@ HP = Heart(screen)
 boosters = []
 damages = []
 x_offset = 200
-for _ in range(100):
-    if random.choice([True, False]):
-        y = random.randint(200, 450)
-        boost_damage = Booster(screen, 500 + x_offset, y)
-        boosters.append(boost_damage)
-        x_offset += random.randint(200, 800)
-    else:
-        y = random.randint(200, 450)
-        boost_damage = Damage(screen, 500 + x_offset, y)
-        damages.append(boost_damage)
-        x_offset += random.randint(200, 800)
 
-enter_pressed = False
+
+def create_boost_damage():
+    global x_offset
+    for _ in range(100):
+        if random.choice([True, False]):
+            y = random.randint(200, 450)
+            boost_damage = Booster(screen, 500 + x_offset, y)
+            boosters.append(boost_damage)
+            x_offset += random.randint(200, 800)
+        else:
+            y = random.randint(200, 450)
+            boost_damage = Damage(screen, 500 + x_offset, y)
+            damages.append(boost_damage)
+            x_offset += random.randint(200, 800)
+
+
 clock = pygame.time.Clock()
 damage_counter = 0
 running = False
 
 current_scene = None
+
 
 def switch_scene(scene):
     global current_scene
@@ -46,6 +51,7 @@ def switch_scene(scene):
 
 
 def start():
+    create_boost_damage()
     background_music.play(loops=-1)
     global running
     running = True
@@ -68,6 +74,7 @@ def start():
                 if event.key == pygame.K_RETURN:
                     background.start = False
                     grandpa.start = False
+                    grandpa.ded_x = 80
                     HP.start = False
                     for booster in boosters:
                         booster.start = False
@@ -78,7 +85,7 @@ def start():
 
 
 def end(text_win, text_point, result):
-    global running
+    global running,damage_counter
     running = False
     play = True
     with open("Best_result.txt", 'r') as file:
@@ -115,6 +122,10 @@ def end(text_win, text_point, result):
             text = font.render(f"Best result: {best_result}", True, (255, 255, 255))
             text_best_rect = text.get_rect(topleft=(340, 330))
             screen.blit(text, text_best_rect)
+        boosters.clear()
+        damages.clear()
+        damage_counter = 0
+        grandpa.collected_boosts = 0
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

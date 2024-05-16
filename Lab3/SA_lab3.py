@@ -14,6 +14,7 @@ pygame.display.set_caption("Стрибки")
 pygame.mixer.init()
 background_music = pygame.mixer.Sound(r"Resource/music/Main Sound.wav")
 end_sound = pygame.mixer.Sound(r"Resource/music/Game Over.mp3")
+win_sound = pygame.mixer.Sound(r"Resource/music/win_neploho.mp3")
 background = Background(SCREEN_WIDTH, SCREEN_HEIGHT)
 grandpa = Grandpabegit(screen)
 HP = Heart(screen)
@@ -85,8 +86,12 @@ def end(text_win, text_point, result):
     file.close()
     background_music.stop()
     while play:
-        if result == 0:
+        if result == -1:
+            end_sound.set_volume(0.1)
             end_sound.play()
+        else:
+            win_sound.set_volume(0.07)
+            win_sound.play()
         screen.fill((0, 0, 0))
         font = pygame.font.Font(None, 50)
         text = font.render("End Game", True, (255, 255, 255))
@@ -173,7 +178,7 @@ def main():
                         for damage_1 in damages:
                             damage_1.start = True
                         text_point = font.render(f"           Try Again", True,(255, 255, 255))
-                        end(text_lost, text_point, 0)
+                        end(text_lost, text_point, -1)
                     for booster in boosters:
                         booster.speed -= 0.5
                     for dam in damages:

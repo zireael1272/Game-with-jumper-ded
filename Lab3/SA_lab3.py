@@ -52,6 +52,7 @@ def switch_scene(scene):
 
 def start():
     background_music.play(loops=-1)
+    background_music.set_volume(0.1)
     global running, x_offset
     running = True
     play = True
@@ -87,7 +88,7 @@ def start():
 
 
 def end(text_win, text_point, result):
-    global running,damage_counter
+    global running, damage_counter
     running = False
     play = True
     with open("Best_result.txt", 'r') as file:
@@ -96,10 +97,10 @@ def end(text_win, text_point, result):
     background_music.stop()
     while play:
         if result == -1:
-            end_sound.set_volume(0.1)
+            end_sound.set_volume(0.08)
             end_sound.play()
         else:
-            win_sound.set_volume(0.07)
+            win_sound.set_volume(0.05)
             win_sound.play()
         screen.fill((0, 0, 0))
         font = pygame.font.Font(None, 50)
@@ -136,6 +137,7 @@ def end(text_win, text_point, result):
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     end_sound.stop()
+                    win_sound.stop()
                     switch_scene(start)
                     play = False
 

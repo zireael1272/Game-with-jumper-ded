@@ -1,8 +1,8 @@
 import pygame
+
 class Grandpabegit(pygame.sprite.Sprite):
     def __init__(self, screen):
         self.screen = screen
-        self.collected_boosters = 0
         self.start = True
         self.collected_boosts = 0
         self.ded_begit = [

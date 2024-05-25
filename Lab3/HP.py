@@ -23,8 +23,6 @@ class Heart:
         self.animate_index += self.animate_speed
         index_int = int(self.animate_index)
         index_int %= len(self.HP_animate)
-        if index_int >= len(self.HP_animate):
-            self.animate_index = 0
 
         if self.start:
             self.screen.blit(self.HP_animate[0], (10, 10))
